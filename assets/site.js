@@ -85,7 +85,7 @@
       consent.hidden = true;
       settings.hidden = true;
       settingsButton.setAttribute('aria-expanded', 'false');
-      status.textContent = analytics || marketing ? (status.dataset.chosen || 'Cookie preference selected.') : (status.dataset.necessary || 'Necessary only selected.');
+      if (status) status.textContent = analytics || marketing ? (status.dataset.chosen || 'Cookie preference selected.') : (status.dataset.necessary || 'Necessary only selected.');
       measure();
       focusWithoutScroll(target);
     };
@@ -100,13 +100,15 @@
     consent.querySelector('[data-consent-save]').addEventListener('click', () => {
       choose(consent.querySelector('#consent-analytics').checked, consent.querySelector('#consent-marketing').checked);
     });
-    reopen.hidden = false;
-    reopen.addEventListener('click', () => {
-      returnControl = reopen;
-      consent.hidden = false;
-      measure();
-      settingsButton.focus({ preventScroll: true });
-    });
+    if (reopen) {
+      reopen.hidden = false;
+      reopen.addEventListener('click', () => {
+        returnControl = reopen;
+        consent.hidden = false;
+        measure();
+        settingsButton.focus({ preventScroll: true });
+      });
+    }
     consent.hidden = Boolean(savedChoice);
     new ResizeObserver(measure).observe(consent);
     measure();

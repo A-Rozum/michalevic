@@ -13,7 +13,7 @@
   h3 { font-size: 2.5rem; }
   h4 { font-size: 2rem; }
   p, li, a, label { overflow-wrap: anywhere; }
-  a { color: var(--accent); text-underline-offset: .2em; }
+  a { color: var(--link, var(--accent)); text-underline-offset: .2em; }
   button, input, select, textarea { font: inherit; }
   img, video, svg { max-inline-size: 100%; block-size: auto; }
   img { display: block; }
@@ -63,9 +63,9 @@
     --mh-shadow: 0 1.4rem 4rem #18233012; --mh-soft-red: #fff0f3; --mh-band: #24262c; --mh-band-ink: #fff; --utility-surface: #f7f8fa; --utility-line: #e2e6ea;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-scheme=light]) { color-scheme: dark; --ink: #eceef1; --muted: #a9b1bb; --paper: #15171b; --surface: #1d2026; --line: #343a43; --accent: #ff4d73; --on-accent: #15171b; --error: #ff8fa3; --mh-shadow: 0 1.4rem 4rem #0007; --mh-soft-red: #3a1622; --mh-band: #0c0d10; --mh-band-ink: #eceef1; --utility-surface: #1d2026; --utility-line: #343a43; }
+    :root:not([data-scheme=light]) { color-scheme: dark; --ink: #eceef1; --muted: #a9b1bb; --paper: #15171b; --surface: #1d2026; --line: #343a43; --accent: #d9003d; --on-accent: #fff; --link: #ff3b4e; --error: #ff8fa3; --mh-shadow: 0 1.4rem 4rem #0007; --mh-soft-red: #3a1622; --mh-band: #0c0d10; --mh-band-ink: #eceef1; --utility-surface: #1d2026; --utility-line: #343a43; }
   }
-  :root[data-scheme=dark] { color-scheme: dark; --ink: #eceef1; --muted: #a9b1bb; --paper: #15171b; --surface: #1d2026; --line: #343a43; --accent: #ff4d73; --on-accent: #15171b; --error: #ff8fa3; --mh-shadow: 0 1.4rem 4rem #0007; --mh-soft-red: #3a1622; --mh-band: #0c0d10; --mh-band-ink: #eceef1; --utility-surface: #1d2026; --utility-line: #343a43; }
+  :root[data-scheme=dark] { color-scheme: dark; --ink: #eceef1; --muted: #a9b1bb; --paper: #15171b; --surface: #1d2026; --line: #343a43; --accent: #d9003d; --on-accent: #fff; --link: #ff3b4e; --error: #ff8fa3; --mh-shadow: 0 1.4rem 4rem #0007; --mh-soft-red: #3a1622; --mh-band: #0c0d10; --mh-band-ink: #eceef1; --utility-surface: #1d2026; --utility-line: #343a43; }
   @media print {
     :root { --paper: #fff; --surface: #fff; --ink: #000; --muted: #333; --line: #aaa; --mh-shadow: none; }
   }
@@ -79,8 +79,6 @@
   :root[data-scheme=dark] .theme-toggle .theme-sun { display: block; }
   :root[data-scheme=dark] .theme-toggle .theme-moon { display: none; }
   .theme-toggle[hidden] { display: none; }
-  .consent-reopen { font: inherit; font-size: var(--small-size); padding: .4rem 1rem; border: .1rem solid var(--line); border-radius: .5rem; background: var(--paper); color: var(--ink); }
-  .consent-reopen[hidden] { display: none; }
   .mh-footer-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
   @media (prefers-color-scheme: dark) {
     :root:not([data-scheme]) .theme-toggle .theme-sun { display: block; }
@@ -134,13 +132,13 @@
   .mh-brand small { display: block; color: var(--muted); font-size: 1.1rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
   .mh-nav { display: flex; align-items: center; flex-wrap: wrap; gap: .4rem 1.8rem; margin-inline-start: auto; }
   .mh-nav a { display: inline-flex; align-items: center; min-block-size: 4.4rem; color: var(--ink); text-decoration: none; font-weight: 650; }
-  .mh-nav a:hover, .mh-nav [aria-current=page] { color: var(--accent); }
+  .mh-nav a:hover, .mh-nav [aria-current=page] { color: var(--link, var(--accent)); }
   .mh-languages { display: flex; gap: .6rem; align-items: center; font-size: var(--small-size); }
   .mh-languages a { display: inline-grid; place-items: center; min-inline-size: 3.9rem; min-block-size: 3.9rem; border: .1rem solid var(--accent); border-radius: .5rem; color: var(--accent); text-decoration: none; font-weight: 700; }
   .mh-languages [aria-current=page] { background: var(--accent); color: var(--on-accent); }
   .mh-hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .85fr); align-items: center; gap: 4rem; padding-block: 7rem 6rem; }
   .mh-hero-copy { gap: 2.5rem; }
-  .mh-eyebrow { color: var(--accent); font-size: var(--small-size); font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+  .mh-eyebrow { color: var(--link, var(--accent)); font-size: var(--small-size); font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
   .mh-hero h1 { font-size: 6.4rem; font-weight: 800; letter-spacing: -.13rem; }
   .mh-hero .lead { color: var(--muted); font-size: 2rem; }
   .mh-hero-art { display: grid; place-items: center; min-block-size: 38rem; }
