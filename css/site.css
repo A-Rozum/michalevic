@@ -92,7 +92,7 @@
   .consent-row > p { flex: none; }
     .consent-actions { display: flex; flex-wrap: nowrap; gap: .6rem; }
   .consent-actions button { white-space: nowrap; flex: none; }
-  .consent-bar button, .consent-reopen { min-block-size: 3.8rem; padding: .6rem 1rem; border: .1rem solid var(--accent); border-radius: .4rem; color: var(--accent); background: var(--paper); font: inherit; }
+  .consent-bar button { min-block-size: 3.8rem; padding: .6rem 1rem; border: .1rem solid var(--accent); border-radius: .4rem; color: var(--link, var(--accent)); background: var(--paper); font: inherit; }
   .consent-bar button { min-block-size: 3.2rem; padding: .25rem .8rem; }
   .consent-settings { padding-block: 1rem; border-block-end: .1rem solid var(--line); margin-block-end: 1rem; }
   .consent-settings label { display: inline-flex; align-items: center; gap: .6rem; margin-inline-end: 2rem; padding-block: .5rem; }
