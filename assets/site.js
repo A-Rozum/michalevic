@@ -1,0 +1,120 @@
+/* Persistent local UI preferences. No trackers or third-party requests. */
+(() => {
+  const root = document.documentElement;
+  const read = (store, key) => {
+    try { return window[store].getItem(key); } catch { return null; }
+  };
+  const write = (store, key, value) => {
+    try { window[store].setItem(key, value); } catch { /* UI still works without storage. */ }
+  };
+  const rem = () => parseFloat(getComputedStyle(root).fontSize);
+
+  const themeButton = document.querySelector('[data-theme-toggle]');
+  if (themeButton) {
+    const preference = matchMedia('(prefers-color-scheme: dark)');
+    const isDark = () => root.dataset.scheme ? root.dataset.scheme === 'dark' : preference.matches;
+    const describe = () => {
+      const label = `Switch to ${isDark() ? 'light' : 'dark'} theme`;
+      themeButton.setAttribute('aria-label', label);
+      themeButton.title = label;
+    };
+    themeButton.hidden = false;
+    themeButton.addEventListener('click', () => {
+      root.dataset.scheme = isDark() ? 'light' : 'dark';
+      write('localStorage', 'michalevic.theme', root.dataset.scheme);
+      describe();
+    });
+    preference.addEventListener('change', describe);
+    window.addEventListener('storage', event => {
+      if (event.key !== 'michalevic.theme' && event.key !== null) return;
+      const theme = read('localStorage', 'michalevic.theme');
+      if (theme === 'light' || theme === 'dark') root.dataset.scheme = theme;
+      else delete root.dataset.scheme;
+      describe();
+    });
+    describe();
+  }
+
+  const consent = document.querySelector('[data-consent-demo]');
+  if (consent) {
+    const settings = consent.querySelector('[data-consent-settings]');
+    const settingsButton = consent.querySelector('[data-consent-configure]');
+    const reopen = document.querySelector('[data-consent-reopen]');
+    const status = document.querySelector('[data-consent-status]');
+    let returnControl = null;
+    const readingTarget = () => {
+      const main = document.querySelector('main');
+      if (!main) return document.body;
+      const header = document.querySelector('.site-header');
+      const top = Math.max(0, header?.getBoundingClientRect().bottom || 0);
+      const bottom = Math.min(window.innerHeight, consent.getBoundingClientRect().top);
+      const candidates = [...main.querySelectorAll('h1, h2, h3, h4, p, li, summary, a, button, input, select, textarea')];
+      const visible = candidates.filter(element => {
+        const rect = element.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0 && rect.bottom > top && rect.top < bottom
+          && getComputedStyle(element).visibility === 'visible';
+      });
+      // Prefer the start of a visible block, not a paragraph already scrolled past.
+      return visible.find(element => element.getBoundingClientRect().top >= top) || visible[0] || main;
+    };
+    const focusWithoutScroll = element => {
+      if (!element.hasAttribute('tabindex') && element.tabIndex < 0) {
+        element.setAttribute('tabindex', '-1');
+        element.addEventListener('blur', () => element.removeAttribute('tabindex'), { once: true });
+      }
+      element.focus({ preventScroll: true });
+    };
+    let savedChoice = null;
+    try {
+      const choice = JSON.parse(read('localStorage', 'michalevic.consent.v1'));
+      if (choice?.version === 1 && typeof choice.analytics === 'boolean' && typeof choice.marketing === 'boolean') savedChoice = choice;
+    } catch { /* Ignore malformed or unavailable storage; ask again. */ }
+    if (savedChoice) {
+      consent.querySelector('#consent-analytics').checked = savedChoice.analytics;
+      consent.querySelector('#consent-marketing').checked = savedChoice.marketing;
+    }
+    const measure = () => {
+      root.style.setProperty('--consent-height', `${consent.hidden ? 0 : consent.getBoundingClientRect().height / rem()}rem`);
+    };
+    const choose = (analytics, marketing) => {
+      const target = returnControl?.isConnected ? returnControl : readingTarget();
+      returnControl = null;
+      write('localStorage', 'michalevic.consent.v1', JSON.stringify({ version: 1, analytics, marketing }));
+      consent.querySelector('#consent-analytics').checked = analytics;
+      consent.querySelector('#consent-marketing').checked = marketing;
+      consent.hidden = true;
+      settings.hidden = true;
+      settingsButton.setAttribute('aria-expanded', 'false');
+      status.textContent = analytics || marketing ? (status.dataset.chosen || 'Cookie preference selected.') : (status.dataset.necessary || 'Necessary only selected.');
+      measure();
+      focusWithoutScroll(target);
+    };
+    consent.querySelector('[data-consent-reject]').addEventListener('click', () => choose(false, false));
+    consent.querySelector('[data-consent-accept]').addEventListener('click', () => choose(true, true));
+    settingsButton.addEventListener('click', () => {
+      settings.hidden = !settings.hidden;
+      settingsButton.setAttribute('aria-expanded', String(!settings.hidden));
+      measure();
+      if (!settings.hidden) settings.querySelector('input').focus({ preventScroll: true });
+    });
+    consent.querySelector('[data-consent-save]').addEventListener('click', () => {
+      choose(consent.querySelector('#consent-analytics').checked, consent.querySelector('#consent-marketing').checked);
+    });
+    reopen.hidden = false;
+    reopen.addEventListener('click', () => {
+      returnControl = reopen;
+      consent.hidden = false;
+      measure();
+      settingsButton.focus({ preventScroll: true });
+    });
+    consent.hidden = Boolean(savedChoice);
+    new ResizeObserver(measure).observe(consent);
+    measure();
+  }
+})();
+
+// Print button: shown only when scripts run, since printing needs window.print().
+document.querySelectorAll('[data-print]').forEach(button => {
+  button.hidden = false;
+  button.addEventListener('click', () => window.print());
+});
