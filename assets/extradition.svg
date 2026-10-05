@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 190">
+  <title>Extradition</title>
+  <!-- The red judge stands behind the podium; the white person reuses the asylum icon's figure. -->
+  <circle cx="100" cy="15" r="12" fill="#d9003d"/>
+  <path fill="#d9003d" d="M89 29q11-7 22 0l34 25-7 8-28-18v13H90V44L62 62l-7-8z"/>
+  <path fill="#d9003d" d="M30 56h140l-9 11h-5v123H44V67h-5z"/>
+  <path fill="#fff" d="m76 52 12-8v8zm36-8 12 8h-12z"/>
+  <g transform="translate(15 31) scale(.85)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="100" cy="58" r="12" stroke="none"/>
+    <path d="M100 88c-29 0-44 19-44 40m44-40c29 0 44 19 44 40M88 105v85m24-85v85" fill="none" stroke-width="14"/>
+  </g>
+</svg>

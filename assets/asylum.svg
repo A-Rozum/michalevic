@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <title>Asylum and protection</title>
+  <path d="M10 190V63q0-5 5-8l80-46q5-3 10 0l80 46q5 3 5 8v127" fill="none" stroke="#0076bd" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="100" cy="58" r="12" fill="#0076bd"/>
+  <path d="M100 88c-29 0-44 19-44 40m44-40c29 0 44 19 44 40M88 105v85m24-85v85" fill="none" stroke="#0076bd" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

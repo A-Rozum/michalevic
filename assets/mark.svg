@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <title>Michalevic Law Office mark</title>
+  <defs>
+    <clipPath id="silhouette">
+      <path d="M45 15C81 12 176 13 203 16c15 2 21 11 21 29v154c0 13-5 18-19 21-39 9-139 9-170-2-13-4-17-12-17-26L17 49c0-21 9-31 28-34Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#silhouette)">
+    <path fill="#ff281e" d="M0 0h240v240H0z"/>
+    <path fill="#e71c2a" d="M18 186c13-18 30-31 55-43v98H0v-32Z"/>
+    <path fill="#ed1c29" d="m115 142 53 28 57-35v105H115Z"/>
+    <path fill="#fff" d="m73 76 95 47 56-33v45l-56 35-52-27v85H73Z"/>
+  </g>
+</svg>
