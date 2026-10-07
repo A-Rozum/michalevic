@@ -5,7 +5,7 @@ audience: both
 description: Michalevic Law Office website redesign — a static site built on Prastora
 packages:
 - id: repo:system
-  version: v0.7.0 (69ce190)
+  version: v0.7.1 (b502e5a)
   repo: A-Rozum/system
   path: .system
 - id: repo:prastora
