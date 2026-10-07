@@ -1,0 +1,16 @@
+id: repo:michalevic
+kind: project
+access: public
+audience: both
+description: Michalevic Law Office website redesign — a static site built on Prastora
+packages:
+- id: repo:system
+  version: v0.4.4 (12a3799)
+  repo: A-Rozum/system
+  path: .system
+- id: repo:prastora
+  version: copy before versioning (2026-10-05)
+  repo: A-Rozum/prastora
+  path: css
+artifacts:
+- '**'

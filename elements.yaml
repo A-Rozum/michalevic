@@ -1,0 +1,7 @@
+- id: core:web/kernel-michalevic@1
+  path: AGENTS.md
+  applies:
+    always: true
+  status: active
+  access: public
+  audience: agent
