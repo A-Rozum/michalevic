@@ -1,4 +1,4 @@
-# Michalevic Law Office — design preview
+# Michalevic Law Office – design preview
 
 **[Open the website preview](https://a-rozum.github.io/michalevic/)** · [English](https://a-rozum.github.io/michalevic/en/) · [Беларуская](https://a-rozum.github.io/michalevic/be/) · [Русский](https://a-rozum.github.io/michalevic/ru/)
 
