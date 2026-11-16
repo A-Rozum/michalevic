@@ -13,7 +13,7 @@ packages:
   repo: A-Rozum/plyn-tools
   path: .system/tools
 - id: a-rozum:prastora
-  version: copy before versioning (2026-10-05)
+  version: 8ffa8cc
   repo: A-Rozum/prastora
   path: css
 artifacts:
