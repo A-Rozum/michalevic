@@ -6,4 +6,4 @@ This is a **public design and content preview for discussion**, not the live web
 
 The search field sends the query to Google, limited to michalevic.org (the current live site until this one replaces it). Contact links point to real destinations. Before using the site as the bureau’s official website, confirm contact details, claims and translations; confirm team members, their roles, photos and image permissions (including the credited award photograph), The team group photo is temporary. Pages ask for no confidential information through a form.
 
-This repository contains only the bureau’s site files. The pages are laid out with [Prastora](https://github.com/plyn-one/plyn.prastora), pinned to the commit `8ffa8cc` (its palette cores are not in a release yet). Each page is checked with Prastora’s `check.mjs`; no development tools are included.
+This repository contains only the bureau’s site files. The site uses a small standalone stylesheet derived from the visual prototype; no Prastora pages or development tools are included.
